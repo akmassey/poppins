@@ -22,17 +22,22 @@ Or install it yourself as:
 
 ## Usage
 
-Poppins: a Markdown cleaner and formatter
-Usage: poppins [options] <filename>
+    Poppins: a Markdown cleaner and formatter
+    Usage: poppins [options] <filename>
+    
+    Examples:
+      poppins ./README.md
+      poppins --output 'output.md' ./input.md
+    
+    Options:
+        -o, --output [FILE]              Write the clean, formatted Markdown to FILE.
+        -h, --help                       Show this message
+        -v, --version                    Show version
 
-Examples:
-  poppins ./README.md
-  poppins --output 'output.md' ./input.md
+## Roadmap
 
-Options:
-    -o, --output [FILE]              Write the clean, formatted Markdown to FILE.
-    -h, --help                       Show this message
-    -v, --version                    Show version
+Poppins is intended to be similar to [formd](http://www.drbunsen.org/formd-a-markdown-formatting-tool.html), but with easier integration with Ruby projects.  Also, I would like to add the ability to insert reference links they way Dr. Drang describes [here](http://www.leancrew.com/all-this/2012/08/markdown-reference-links-in-bbedit/) and [here](http://www.leancrew.com/all-this/2012/08/more-markdown-reference-links-in-bbedit/).
+
 
 ## Contributing
 
