@@ -1,11 +1,9 @@
 module Poppins
   class Document
-    attr_accessor :output_filename, :input_filename
 
-    def initialize(input)
-      @input_filename = input
-
-      @input = File.open(@input_filename, 'r').readlines.join
+    def initialize(input, output=nil)
+      @input = File.open(input, 'r').readlines.join
+      @output = output
 
       # RegEx for matching reference links in the text.  (Avoid footnotes!)
       @links = /\[([^\]]+)\]\[([^^\]]+)\]/
@@ -33,19 +31,55 @@ module Poppins
     end
 
     def ordinal_references
-      newlabels = []
+      references = []
       order_of_first_appearance.each_with_index do |o, i| 
-        newlabels.push("[#{i+1}]: #{labels[o]}")
+        references.push("[#{i+1}]: #{labels[o]}")
       end
 
-      newlabels 
+      references 
     end
 
+    ##
+    # Returns an array of the link text and the new reference number when
+    # passed links based on the old reference numbering system
+    def get_replacement(string)
+      md = string.match(@links)
+      link_text = md[1].to_s
+      reference_number = (order_of_first_appearance.index(md[2]) + 1).to_s
+
+      return [link_text, reference_number]
+    end
+
+
+    ##
+    # Produces the clean, formatted version of the Markdown with new
+    # reference numbers.
     def clean_and_format
-      p links
-      p labels
-      p order_of_first_appearance
-      p ordinal_references
+      # Remove old references (TOOD: Need to remove blank lines resulting from
+      # this.)
+      result = @input.gsub(@labels, '')
+      #
+      # Add new references
+      ordinal_references.each do |r| 
+        result += r.to_s + "\n"
+      end
+
+      # Replace old reference numbers with the new ones
+      result = result.gsub(@links) do |m| 
+        replacement = get_replacement(m) 
+        "[#{replacement[0]}][#{replacement[1]}]"
+      end
+
+      # output the result
+      # puts result
+
+      if @output
+        File.open(@output, 'w') do |f|
+          f.write(result)
+        end
+      else 
+        puts result
+      end
     end
   end
 end
