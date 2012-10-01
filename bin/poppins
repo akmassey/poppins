@@ -9,12 +9,13 @@ op = OptionParser.new do |opts|
   opts.banner = "Poppins: a Markdown cleaner and formatter"
   opts.define_head "Usage: poppins [options] <filename>"
   opts.separator ""
-  opts.separator "Example:"
+  opts.separator "Examples:"
   opts.separator "  poppins ./README.md"
+  opts.separator "  poppins --output 'output.md' ./input.md"
   opts.separator ""
   opts.separator "Options:"
 
-  opts.on("--output [FILE]", "Write the clean, formatted Markdown to this file.") do |file|
+  opts.on("-o", "--output [FILE]", "Write the clean, formatted Markdown to FILE.") do |file|
     @output = file
   end
 
