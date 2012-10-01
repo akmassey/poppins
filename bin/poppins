@@ -3,6 +3,8 @@
 require 'optparse'
 require_relative '../lib/poppins'
 
+@output = nil 
+
 op = OptionParser.new do |opts|
   opts.banner = "Poppins: a Markdown cleaner and formatter"
   opts.define_head "Usage: poppins [options] <filename>"
@@ -13,7 +15,7 @@ op = OptionParser.new do |opts|
   opts.separator "Options:"
 
   opts.on("--output [FILE]", "Write the clean, formatted Markdown to this file.") do |file|
-    poppins.output_filename = file
+    @output = file
   end
 
   opts.on_tail("-h", "--help", "Show this message") do
@@ -36,6 +38,6 @@ if input.empty?
   exit 1
 end
 
-poppins = Poppins::Document.new input
+poppins = Poppins::Document.new input, @output
 
 poppins.clean_and_format
