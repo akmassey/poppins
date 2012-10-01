@@ -1,8 +1,10 @@
 # Poppins
 
 Poppins formats Markdown files to ensure that reference links are
-numbered and appear in numerical order.  Inspired by [Dr. Drang's
-script][1] for tidying reference links.
+numbered and appear in numerical order.  Currently, this is a seriously
+basic tool.  Still, it does what I needed, and I hope to expand it.
+Poppins was inspired by [Dr. Drang's script][1] for tidying reference
+links.
 
 ## Installation
 
