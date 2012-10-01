@@ -3,9 +3,9 @@ require File.expand_path('../lib/poppins/version', __FILE__)
 
 Gem::Specification.new do |gem|
   gem.authors       = ["Aaron Massey"]
-  gem.email         = ["akmassey@ncsu.edu"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
+  gem.email         = ["akmassey@gatech.edu"]
+  gem.description   = %q{Poppins is a basic formatter for Markdown files.}
+  gem.summary       = %q{Poppins formats Markdown files to ensure that reference links are numbered and appear in numerical order.}
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($\)
