@@ -1,0 +1,41 @@
+#!/usr/bin/env ruby
+
+require 'optparse'
+require_relative '../lib/poppins'
+
+op = OptionParser.new do |opts|
+  opts.banner = "Poppins: a Markdown cleaner and formatter"
+  opts.define_head "Usage: poppins [options] <filename>"
+  opts.separator ""
+  opts.separator "Example:"
+  opts.separator "  poppins ./README.md"
+  opts.separator ""
+  opts.separator "Options:"
+
+  opts.on("--output [FILE]", "Write the clean, formatted Markdown to this file.") do |file|
+    poppins.output_filename = file
+  end
+
+  opts.on_tail("-h", "--help", "Show this message") do
+    puts opts
+    exit
+  end
+
+  opts.on_tail("-v", "--version", "Show version") do
+    puts Poppins::VERSION
+    exit
+  end
+end
+
+op.parse!
+
+input = ARGV.shift.to_s.strip
+
+if input.empty?
+  puts op
+  exit 1
+end
+
+poppins = Poppins::Document.new input
+
+poppins.clean_and_format
