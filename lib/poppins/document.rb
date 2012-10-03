@@ -1,8 +1,14 @@
 module Poppins
   class Document
 
-    def initialize(input, output=nil)
-      @input = File.open(input, 'r').readlines.join
+    def initialize(input=nil, output=nil)
+      if input.empty?
+        # TODO: Probably need to raise an error if ARGF is nil...
+        @input = ARGF.readlines.join
+      else
+        @input = File.open(input, 'r').readlines.join
+      end
+
       @output = output
 
       # RegEx for matching reference links in the text.  (Avoid footnotes!)

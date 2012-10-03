@@ -34,11 +34,7 @@ op.parse!
 
 input = ARGV.shift.to_s.strip
 
-if input.empty?
-  puts op
-  exit 1
-end
-
 poppins = Poppins::Document.new input, @output
 
 poppins.clean_and_format
+
