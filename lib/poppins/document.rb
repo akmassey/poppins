@@ -15,6 +15,7 @@ module Poppins
       @links = /\[([^\]]+)\]\[([^^\]]+)\]/
       # RegEx for matching labels for reference links.  (Avoid footnotes!)
       @labels = /^\[([^^\]]+)\]:\s+(.+)$/
+      @labels_with_possible_newlines = /^\[([^^\]]+)\]:\s+(.+)(\n)?/
     end
 
     ##
@@ -63,7 +64,7 @@ module Poppins
     def clean_and_format
       # Remove old references (TOOD: Need to remove blank lines resulting from
       # this.)
-      result = @input.gsub(@labels, '')
+      result = @input.gsub(@labels_with_possible_newlines, '')
       #
       # Add new references
       ordinal_references.each do |r| 
