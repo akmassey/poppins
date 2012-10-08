@@ -24,5 +24,17 @@ describe Poppins::InlineLink do
     il.link_text = "A Search Engine"
     il.link_text.should == "A Search Engine"
   end
+
+  it "should have a regex to identify itself" do
+    il = Poppins::InlineLink.new(@url, @link_text)
+
+    sample_text = "This is a [more complex](http://google.com) example."
+    good_match = sample_text.match(il.regex)
+    good_match.should_not be nil
+
+    bad_sample_text = "This example [shouldn't work](http://yahoo.com)."
+    bad_match = bad_sample_text.match(il.regex)
+    bad_match.should be nil
+  end
 end
 
