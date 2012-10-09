@@ -36,5 +36,9 @@ input = ARGV.shift.to_s.strip
 
 poppins = Poppins::Document.new input, @output
 
-poppins.clean_and_format
+puts poppins.clean_and_format
+
+# puts poppins.convert_inline_to_reference
+
+# puts poppins.convert_reference_to_inline
 
