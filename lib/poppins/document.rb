@@ -84,7 +84,8 @@ module Poppins
         label_from_match = match_data[2].to_s
         new_label = @reference_links.index { |rl| rl.label == label_from_match }
 
-        "[#{link_text}][#{new_label + 1}]"
+        # TODO: Do you really want to strip whitespace here?
+        "[#{link_text.strip}][#{new_label + 1}]"
       end
       
       # return the result

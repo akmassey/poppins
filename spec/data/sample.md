@@ -20,7 +20,7 @@ if so, there can be followed by which viscid matter, such as
 that of making [slaves][1]. Let it be remembered that
 selection may be extended--to the stigma of.
 
-[1]: http://daringfireball.net/markdown/
-[2]: http://www.google.com/
+[1]: http://daringfireball.net/markdown
+[2]: http://www.google.com
 [3]: http://docs.python.org/library/index.html
-[4]: http://www.kungfugrippe.com/
+[4]: http://www.kungfugrippe.com

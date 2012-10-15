@@ -46,7 +46,7 @@ It would also be really awesome if we could re-flow paragraph text and
 wrap it at user-specified column lengths.
 
 Currently, Poppins doesn't handle implicit reference links.  Those are
-links that look [like this].
+links that look [like this] or perhaps [like this][].
 
 
 ## Contributing
