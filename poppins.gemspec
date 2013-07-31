@@ -7,6 +7,7 @@ Gem::Specification.new do |gem|
   gem.description   = %q{Poppins is a basic formatter for Markdown files.}
   gem.summary       = %q{Poppins formats Markdown files to ensure that reference links are numbered and appear in numerical order.}
   gem.homepage      = ""
+  gem.license       = "MIT"
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }

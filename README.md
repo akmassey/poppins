@@ -24,11 +24,11 @@ Or install it yourself as:
 
     Poppins: a Markdown cleaner and formatter
     Usage: poppins [options] <filename>
-    
+
     Examples:
       poppins ./README.md
       poppins --output 'output.md' ./input.md
-    
+
     Options:
         -o, --output [FILE]              Write the clean, formatted Markdown to FILE.
         -h, --help                       Show this message

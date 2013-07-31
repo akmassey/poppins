@@ -21,7 +21,7 @@ module Poppins
     end
 
 
-    ## 
+    ##
     # Identifies inline links in the document
     def identify_inline_links(input=@input)
       inline_links = Hash[input.scan(InlineLink.inline_regex)]
@@ -35,7 +35,7 @@ module Poppins
       @inline_links
     end
 
-    ## 
+    ##
     # Identifies reference links in the document
     def identify_reference_links(input=@input)
       reference_links = Hash[input.scan(ReferenceLink.link_regex)]
@@ -46,6 +46,21 @@ module Poppins
 
       reference_links.each do |rl|
         @reference_links.push( ReferenceLink.new(labels[rl.to_a[1]], rl.to_a[0], rl.to_a[1] ) )
+      end
+
+      # identify unused labels at the end of the document
+      urls = @reference_links.map do |rl|
+        rl.url
+      end
+
+      unused_labels = labels.select do |key, value|
+        !urls.include?(value)
+      end
+
+      count = @reference_links.count + 1
+      unused_labels.each do |key, value|
+        @reference_links.push( ReferenceLink.new( value.to_s, "", count.to_s) )
+        count += 1
       end
 
       # Note that the order of the links in this list is the same as their
@@ -69,7 +84,7 @@ module Poppins
       # the text since they aren't added back in unless they were used in the
       # text..
       result = result.gsub(ReferenceLink.label_regex_with_possible_newlines, '')
-      
+
       # Add new reference labels to the end
       @reference_links.each_with_index do |rl, i|
         result += "[#{i+1}]: #{rl.url}\n"
@@ -87,7 +102,7 @@ module Poppins
         # TODO: Do you really want to strip whitespace here?
         "[#{link_text.strip}][#{new_label + 1}]"
       end
-      
+
       # return the result
       if @output
         File.open(@output, 'w') do |f|
@@ -107,7 +122,7 @@ module Poppins
 
       @inline_links.each do |link|
         reference_label = SecureRandom.hex(8)
-        result = result.gsub(link.regex) do |match| 
+        result = result.gsub(link.regex) do |match|
           "[#{link.link_text}][#{reference_label}]"
         end
         result += "[#{reference_label}]: #{link.url}\n"
@@ -116,18 +131,18 @@ module Poppins
       result
     end
 
-    ## 
+    ##
     # Convert reference links to inline links.  This can be used prior to
     # converting back to reference links to ensure that all links are
     # reference links and they are numbered in the order they appear.
     def convert_reference_to_inline(input=@input)
-      result = input 
+      result = input
 
       # TODO: Should DRY this
       labels = Hash[input.scan(ReferenceLink.label_regex)]
       ref_urls = labels.values
 
-      ref_urls.each do |url| 
+      ref_urls.each do |url|
         regex = /\[([^\]]+)\]\[(#{Regexp.quote(url)})\]/
         result = result.gsub(regex) do |match|
           "[#{match[1]}](#{url})"
