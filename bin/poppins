@@ -3,7 +3,7 @@
 require 'optparse'
 require_relative '../lib/poppins'
 
-@output = nil 
+@output = nil
 
 op = OptionParser.new do |opts|
   opts.banner = "Poppins: a Markdown cleaner and formatter"

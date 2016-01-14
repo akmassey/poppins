@@ -13,7 +13,7 @@ describe Poppins::ReferenceLink do
     rl.link_text.should == @label
   end
 
-  it "should correctly produce the end reference" do 
+  it "should correctly produce the end reference" do
     rl = Poppins::ReferenceLink.new(@link, @label)
     rl.as_end_reference.should == "[Google]: http://google.com"
   end
@@ -22,5 +22,5 @@ describe Poppins::ReferenceLink do
     rl = Poppins::ReferenceLink.new(@link, @label)
     rl.as_found_in_text.should == "[Google]"
   end
-  
+
 end

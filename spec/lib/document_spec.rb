@@ -8,6 +8,7 @@ module Poppins
       @clean_file = File.dirname(__FILE__) + '/../data/clean_formatted_sample.md'
       @inline_file = File.dirname(__FILE__) + '/../data/sample_inline.md'
       @unused_references_file = File.dirname(__FILE__) + '/../data/unused_references.md'
+      @footnotes_file = File.dirname(__FILE__) + '/../data/foonotes.md'
     end
 
     it "should be instantiatable" do
@@ -23,7 +24,7 @@ module Poppins
 
       actual_ils = Document.new(@inline_file).inline_links
 
-      actual_ils.count.should == 4
+      actual_ils.count.should == expected_ils.count
 
       for i in 0..(actual_ils.count-1)
         actual_ils[i].to_s.should == expected_ils[i].to_s
@@ -75,9 +76,11 @@ module Poppins
 
     end
 
-    it "should handle reference links that look [like this]"
+    it "should handle implicit reference links that look [like this]"
 
-    it "should handle reference links that look [like this][]"
+    it "should handle implicit reference links that look [like this][]"
+
+    it "should normalize footnotes to the end of the file"
 
   end
 end

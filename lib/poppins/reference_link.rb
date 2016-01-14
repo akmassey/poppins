@@ -1,10 +1,13 @@
 module Poppins
   class ReferenceLink
     # RegEx for matching reference links in the text.  (Avoid footnotes!)
-    @link_regex = /\[([^\]]+)\]\[([^^\]]+)\]/
+    @link_regex = /\[([^^\]]+)\]\[([^^\]]+)\]/
     # RegEx for matching labels for reference links.  (Avoid footnotes!)
     @label_regex = /^\[([^^\]]+)\]:\s+(.+)$/
     @label_regex_with_possible_newlines = /^\[([^^\]]+)\]:\s+(.+)(\n)?/
+
+    @footnote_regex = /\[^([^^\]]+)\]/
+    @footnote_label_regex = /^\[^([^^\]]+)\]:\s+(.+)$/
 
     attr_reader :url, :link_text, :label, :link_regex, :label_regex
 
