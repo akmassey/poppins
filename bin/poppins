@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
 require 'optparse'
 require_relative '../lib/poppins'
@@ -6,25 +7,25 @@ require_relative '../lib/poppins'
 @output = nil
 
 op = OptionParser.new do |opts|
-  opts.banner = "Poppins: a Markdown cleaner and formatter"
-  opts.define_head "Usage: poppins [options] <filename>"
-  opts.separator ""
-  opts.separator "Examples:"
-  opts.separator "  poppins ./README.md"
+  opts.banner = 'Poppins: a Markdown cleaner and formatter'
+  opts.define_head 'Usage: poppins [options] <filename>'
+  opts.separator ''
+  opts.separator 'Examples:'
+  opts.separator '  poppins ./README.md'
   opts.separator "  poppins --output 'output.md' ./input.md"
-  opts.separator ""
-  opts.separator "Options:"
+  opts.separator ''
+  opts.separator 'Options:'
 
-  opts.on("-o", "--output [FILE]", "Write the clean, formatted Markdown to FILE.") do |file|
+  opts.on('-o', '--output [FILE]', 'Write the clean, formatted Markdown to FILE.') do |file|
     @output = file
   end
 
-  opts.on_tail("-h", "--help", "Show this message") do
+  opts.on_tail('-h', '--help', 'Show this message') do
     puts opts
     exit
   end
 
-  opts.on_tail("-v", "--version", "Show version") do
+  opts.on_tail('-v', '--version', 'Show version') do
     puts Poppins::VERSION
     exit
   end
@@ -35,10 +36,4 @@ op.parse!
 input = ARGV.shift.to_s.strip
 
 poppins = Poppins::Document.new input, @output
-
 puts poppins.clean_and_format
-
-# puts poppins.convert_inline_to_reference
-
-# puts poppins.convert_reference_to_inline
-

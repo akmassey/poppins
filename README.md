@@ -36,18 +36,17 @@ Or install it yourself as:
 
 ## Roadmap
 
-Poppins is intended to be similar to [formd][2], but with easier
-integration with Ruby projects.  Also, I would like to add the ability
-to insert reference links they way Dr. Drang describes
+Poppins is intended to be similar to [formd][2], but with easier integration
+with Ruby projects.  Also, I would like to add the ability to insert reference
+links they way Dr. Drang describes
 [here](http://www.leancrew.com/all-this/2012/08/markdown-reference-links-in-bbedit/)
 and [here][3].
 
-It would also be really awesome if we could re-flow paragraph text and
-wrap it at user-specified column lengths.
+It would also be really awesome if we could re-flow paragraph text and wrap it
+at user-specified column lengths.
 
-Currently, Poppins doesn't handle implicit reference links.  Those are
-links that look [like this] or perhaps [like this][].
-
+Currently, Poppins doesn't handle implicit reference links.  Those are links
+that look [like this] or perhaps [like this][].
 
 ## Contributing
 
@@ -56,8 +55,6 @@ links that look [like this] or perhaps [like this][].
 3. Commit your changes (`git commit -am 'Added some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
-
-
 
 [1]: http://www.leancrew.com/all-this/2012/09/tidying-markdown-reference-links/
 [2]: http://www.drbunsen.org/formd-a-markdown-formatting-tool.html
